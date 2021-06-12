@@ -1,3 +1,6 @@
 export const environment = {
-  production: false
+  production: false,
+  applicationServer: {
+    host: 'http://file-server-admin.net:8084'
+  }
 };
