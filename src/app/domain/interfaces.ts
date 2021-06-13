@@ -6,6 +6,7 @@ export interface Question {
 export interface Language {
   id?: string;
   iso_code: string;
+  name: string;
 }
 export interface Answer {
   id?: string;
