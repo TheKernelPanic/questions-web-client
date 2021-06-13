@@ -10,11 +10,12 @@ export interface Language {
 }
 export interface Answer {
   id?: string;
+  translations: AnswerTranslation[];
   position: number;
   result: boolean;
 }
 export interface Translation {
-  id: string;
+  id?: string;
   language: Language;
 }
 export interface QuestionTranslation extends Translation {

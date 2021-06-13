@@ -6,7 +6,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export abstract class HttpService {
 
-  protected uri: string;
+  protected readonly uri: string | undefined;
 
   protected constructor(
     protected httpClient: HttpClient,
