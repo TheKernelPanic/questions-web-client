@@ -8,6 +8,8 @@ import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { ErrorComponent } from './views/error/error.component';
 import {RouterModule} from "@angular/router";
 import routesDefinitions from "./app.routes-definitions";
+import {HttpClientModule} from "@angular/common/http";
+import {environment} from "../environments/environment";
 
 @NgModule({
   declarations: [
@@ -20,12 +22,15 @@ import routesDefinitions from "./app.routes-definitions";
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(routesDefinitions)
+    RouterModule.forRoot(routesDefinitions),
+    HttpClientModule
   ],
   exports: [
     RouterModule
   ],
-  providers: [],
+  providers: [
+    {provide: 'applicationServerHost', useValue: environment.applicationServer.host}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
