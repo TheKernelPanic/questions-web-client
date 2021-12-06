@@ -10,6 +10,7 @@ import {RouterModule} from "@angular/router";
 import routesDefinitions from "./app.routes-definitions";
 import {HttpClientModule} from "@angular/common/http";
 import {environment} from "../environments/environment";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -19,12 +20,13 @@ import {environment} from "../environments/environment";
     DashboardComponent,
     ErrorComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    RouterModule.forRoot(routesDefinitions),
-    HttpClientModule
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        RouterModule.forRoot(routesDefinitions),
+        HttpClientModule,
+        ReactiveFormsModule
+    ],
   exports: [
     RouterModule
   ],
