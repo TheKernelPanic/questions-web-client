@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  application:
+    image: node:14
+    tty: true
+    working_dir: "/var/www/app"
+    #command:
+      #- sh -c "npm i -g @angular/cli "
+    container_name: questions_web_client_backoffice
+    volumes:
+      - ".:/var/www/app"
+    ports:
+      - "4200:4200"
