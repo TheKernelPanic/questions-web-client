@@ -1,26 +1,33 @@
 export interface Question {
   id?: string;
-  translations: QuestionTranslation[];
+  title: string;
   answers: Answer[];
-}
-export interface Language {
-  id?: string;
-  iso_code: string;
-  name: string;
+  created_at?: string;
+  updated_at?: string;
+  topic?: Topic|null;
+  lesson?: Lesson|null;
 }
 export interface Answer {
   id?: string;
-  translations: AnswerTranslation[];
+  text: string;
   position: number;
   result: boolean;
 }
-export interface Translation {
+
+export interface Topic {
   id?: string;
-  language: Language;
+  description: string;
 }
-export interface QuestionTranslation extends Translation {
+
+export interface Book {
+  id?: string;
   title: string;
+  author?: string|null;
 }
-export interface AnswerTranslation extends Translation {
-  text: string;
+
+export interface Lesson {
+  id?: string;
+  book?: Book|null;
+  description: string;
+  position: number;
 }
