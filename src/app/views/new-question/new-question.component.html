@@ -1,2 +1,41 @@
 <div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div>
+        <label>Question title</label>
+        <input type="text" formControlName="questionTitle" maxlength="255" autocomplete="off" />
+      </div>
+      <div formArrayName="answers">
+        <div *ngFor="let answer of answers().controls; let i = index;">
+
+          <div [formGroupName]="i">
+            <div>
+              <label>Answer {{i+1}}</label>
+              <input type="text" formControlName="text"/>
+            </div>
+
+            <div>
+              <p>
+                <label>
+                  <input type="checkbox" class="filled-in" formControlName="result" />
+                  <span>Answer result</span>
+                </label>
+              </p>
+            </div>
+
+            <div>
+              <button class="btn" type="button" (click)="removeAnswer(i)">Remove answer</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div>
+        <button type="button" class="btn" (click)="addNewAnswer()">Add answer</button>
+      </div>
+
+      <div>
+        <button class="btn" type="submit">Save</button>
+      </div>
+
+    </form>
 </div>

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Language, Question} from "../../domain/interfaces";
-import {GetAllService} from "../../http-services/language/get-all.service";
-import {HttpErrorResponse} from "@angular/common/http";
+import {Lesson, Question, Topic} from "../../domain/interfaces";
+import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-new-question',
@@ -10,59 +9,76 @@ import {HttpErrorResponse} from "@angular/common/http";
 })
 export class NewQuestionComponent implements OnInit {
 
+  public form: FormGroup;
   public maxAmountAnswers: number = 5;
   public loader: boolean = false;
-  public question: Question = {
-    translations: [],
-    answers: []
-  };
-  public languagesAvailable: Language[] = [];
-  public languageSelected: Language;
+  public topics: Topic[];
+  public formAsErrors: boolean;
+  public lessonSelected: Lesson|null;
 
   public constructor(
-    private languageHttpService: GetAllService
-  ) { }
+    private formBuilder: FormBuilder
+  ) {
+    this.formAsErrors = false;
+    this.lessonSelected = null;
+  }
 
   public ngOnInit(): void {
+    this.initializeForm();
 
-      this.languageHttpService.request().then(
-        (response: Language[]) => {
-          this.languagesAvailable = response;
-          this.languageSelected = this.languagesAvailable[0];
-          this.addDefaultQuestionTranslation();
-          this.loader = false;
-        },
-        (error: HttpErrorResponse) => {
-          console.log(error);
-        }
-      );
+    this.addNewAnswer();
+    this.addNewAnswer();
+    this.addNewAnswer();
   }
 
   public addNewAnswer(): void {
-    if (this.question.answers.length >= this.maxAmountAnswers) return;
-    this.question.answers.push({
-      translations: [
-        {
-          text: '',
-          language: this.languageSelected as Language
-        }
-      ],
-      position: this.question.answers.length + 1,
-      result: false
-    });
+    if ((this.form.get('answers') as FormArray).length >= this.maxAmountAnswers) {
+      return;
+    }
+    (this.form.get('answers') as FormArray).push(
+      new FormGroup({
+        text: new FormControl('', Validators.required),
+        result: new FormControl(false)
+      })
+    );
   }
 
-  private addDefaultQuestionTranslation(): void {
-    this.languagesAvailable.forEach((language: Language) => {
-      this.question.translations.push({
-        title: '',
-        language
+  public removeAnswer(index: number): void {
+    (this.form.get('answers') as FormArray).removeAt(index);
+  }
+
+  private initializeForm(): void {
+    this.form = new FormGroup({
+      questionTitle: new FormControl('', Validators.required),
+      answers: this.formBuilder.array([])
+    })
+  }
+
+  public answers(): FormArray {
+    return this.form.get('answers') as FormArray;
+  }
+
+  private getHttpModel(): Question {
+    const question: Question = {
+      title: (this.form.get('questionTitle') as FormControl).value,
+      answers: []
+    };
+    for (let i = 0; i < (this.form.get('answers') as FormArray).length; i++) {
+      const group: AbstractControl = (this.form.get('answers') as FormArray).at(i);
+      question.answers.push({
+        text: (group.get('text') as FormControl).value,
+        result: (group.get('result') as FormControl).value,
+        position: i+1
       });
-    });
+    }
+    return question;
   }
 
-  public removeAnswer(event: Event, index: number): void {
-    event.preventDefault();
-    this.question.answers.splice(index, 1);
+  public onSubmit(): void {
+    if (this.form.invalid) {
+      this.formAsErrors = true;
+      return;
+    }
+
   }
 }
