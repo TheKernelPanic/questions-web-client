@@ -11,6 +11,7 @@ import routesDefinitions from "./app.routes-definitions";
 import {HttpClientModule} from "@angular/common/http";
 import {environment} from "../environments/environment";
 import {ReactiveFormsModule} from "@angular/forms";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {ReactiveFormsModule} from "@angular/forms";
         BrowserAnimationsModule,
         RouterModule.forRoot(routesDefinitions),
         HttpClientModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        NgbModule
     ],
   exports: [
     RouterModule
