@@ -2,6 +2,7 @@ import {Routes} from "@angular/router";
 import {DashboardComponent} from "./views/dashboard/dashboard.component";
 import {ErrorComponent} from "./views/error/error.component";
 import {NewQuestionComponent} from "./views/new-question/new-question.component";
+import {QuestionCreatedComponent} from "./views/question-created/question-created.component";
 
 const routesDefinitions: Routes = [
   {
@@ -20,6 +21,10 @@ const routesDefinitions: Routes = [
     path: '',
     redirectTo: '/dashboard',
     pathMatch: 'full'
+  },
+  {
+    path: 'question-created',
+    component: QuestionCreatedComponent
   },
   {
     path: '**',

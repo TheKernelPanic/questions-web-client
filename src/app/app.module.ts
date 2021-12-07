@@ -10,8 +10,9 @@ import {RouterModule} from "@angular/router";
 import routesDefinitions from "./app.routes-definitions";
 import {HttpClientModule} from "@angular/common/http";
 import {environment} from "../environments/environment";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { QuestionCreatedComponent } from './views/question-created/question-created.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NavigationBarComponent,
     NewQuestionComponent,
     DashboardComponent,
-    ErrorComponent
+    ErrorComponent,
+    QuestionCreatedComponent
   ],
     imports: [
         BrowserModule,
@@ -27,7 +29,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         RouterModule.forRoot(routesDefinitions),
         HttpClientModule,
         ReactiveFormsModule,
-        NgbModule
+        NgbModule,
+        FormsModule
     ],
   exports: [
     RouterModule

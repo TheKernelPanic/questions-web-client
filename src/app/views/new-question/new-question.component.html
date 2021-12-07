@@ -1,41 +1,95 @@
-<div>
+<div class="container bg-white border border-secondary my-5 p-4">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <div>
-        <label>Question title</label>
-        <input type="text" formControlName="questionTitle" maxlength="255" autocomplete="off" />
+
+      <div class="mb-4">
+        <h4 class="h4">Question creation</h4>
       </div>
-      <div formArrayName="answers">
-        <div *ngFor="let answer of answers().controls; let i = index;">
 
-          <div [formGroupName]="i">
-            <div>
-              <label>Answer {{i+1}}</label>
-              <input type="text" formControlName="text"/>
-            </div>
+      <div class="row mb-3 pb-3 border-bottom border-light">
+        <!-- Topic selector-->
+        <div class="col-3">
+          <label>Topic</label>
+          <select class="custom-select" [(ngModel)]="topicSelected" [ngModelOptions]="{standalone: true}" (change)="bookHttpService()">
+            <option [ngValue]="topic" *ngFor="let topic of topics; let index = index">{{topic.description}}</option>
+          </select>
+        </div>
 
-            <div>
-              <p>
-                <label>
-                  <input type="checkbox" class="filled-in" formControlName="result" />
-                  <span>Answer result</span>
-                </label>
-              </p>
-            </div>
+        <!-- Book selector -->
+        <div class="col-3" *ngIf="books.length">
+          <label>Book</label>
+          <select class="custom-select" [(ngModel)]="bookSelected" [ngModelOptions]="{standalone: true}" (change)="lessonHttpService()">
+            <option [ngValue]="book" *ngFor="let book of books; let index = index">{{book.title}}</option>
+          </select>
+        </div>
 
-            <div>
-              <button class="btn" type="button" (click)="removeAnswer(i)">Remove answer</button>
-            </div>
-          </div>
-
+        <!-- Lesson selector -->
+        <div class="col-6" *ngIf="lessons.length">
+          <label>Lesson <a href="#" (click)="$event.preventDefault(); openNewLessonModal()">+ Add</a></label>
+          <select class="custom-select" [(ngModel)]="lessonSelected" [ngModelOptions]="{standalone: true}">
+            <option [ngValue]="lesson" *ngFor="let lesson of lessons; let index = index">{{lesson.position}}. {{lesson.description}}</option>
+          </select>
         </div>
       </div>
-      <div>
-        <button type="button" class="btn" (click)="addNewAnswer()">Add answer</button>
+
+      <!-- Question title -->
+      <div class="form-group my-2">
+        <label class="form-label">Title</label>
+        <textarea class="form-control" formControlName="questionTitle" maxlength="255"></textarea>
       </div>
 
-      <div>
-        <button class="btn" type="submit">Save</button>
+      <div class="my-3">
+        <button type="button" class="btn btn-primary" (click)="addNewAnswer()">Add empty answer</button>
+      </div>
+      <div class="pt-4" formArrayName="answers">
+        <div *ngFor="let answer of answers().controls; let i = index;">
+          <div class="row align-items-center my-2" [formGroupName]="i">
+            <!-- Answer text -->
+            <div class="col-10">
+              <input class="form-control" type="text" formControlName="text" placeholder="Answer {{i+1}}" maxlength="255"/>
+            </div>
+            <!-- Answer result -->
+            <div clasS="col-1">
+              <div class="row">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" formControlName="result"/>
+                  <label class="form-check-label">
+                    Right
+                  </label>
+                </div>
+              </div>
+            </div>
+            <!-- Remove -->
+            <div class="col-1">
+              <div class="row">
+                <button class="btn btn-danger" type="button" (click)="removeAnswer(i)">Remove</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="my-5">
+        <button class="btn btn-success" type="submit">Save changes</button>
       </div>
 
     </form>
+
+    <!-- New lesson modal -->
+    <ng-template #newLessonModal let-modal>
+      <div class="modal-body p-4">
+        <form [formGroup]="newLessonForm" (ngSubmit)="saveNewLesson()">
+          <div class="my-4">
+            <h6 class="h6">
+              New lesson of <em *ngIf="this.bookSelected">{{this.bookSelected.title}}</em>
+            </h6>
+          </div>
+          <div>
+            <input type="text" class="form-control" formControlName="description" maxlength="255" autocomplete="off" placeholder="Lesson title...">
+          </div>
+          <div class="my-4">
+            <button type="submit" class="btn btn-success">Save new lesson</button>
+          </div>
+        </form>
+      </div>
+    </ng-template>
 </div>
