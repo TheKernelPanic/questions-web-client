@@ -1,8 +1,9 @@
 import {Routes} from "@angular/router";
-import {DashboardComponent} from "./views/dashboard/dashboard.component";
 import {ErrorComponent} from "./views/error/error.component";
 import {NewQuestionComponent} from "./views/new-question/new-question.component";
 import {QuestionCreatedComponent} from "./views/question-created/question-created.component";
+import {QuestionPreviewComponent} from "./views/question-preview/question-preview.component";
+import {ListQuestionsComponent} from "./views/list-questions/list-questions.component";
 
 const routesDefinitions: Routes = [
   {
@@ -10,21 +11,25 @@ const routesDefinitions: Routes = [
     component: NewQuestionComponent
   },
   {
+    path: 'questions',
+    component: ListQuestionsComponent
+  },
+  {
     path: 'error/:code',
     component: ErrorComponent
   },
   {
-    path: 'dashboard',
-    component: DashboardComponent
+    path: 'question-created',
+    component: QuestionCreatedComponent
+  },
+  {
+    path: 'question-preview/:questionId',
+    component: QuestionPreviewComponent
   },
   {
     path: '',
-    redirectTo: '/dashboard',
+    redirectTo: '/questions',
     pathMatch: 'full'
-  },
-  {
-    path: 'question-created',
-    component: QuestionCreatedComponent
   },
   {
     path: '**',

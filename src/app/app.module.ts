@@ -4,7 +4,6 @@ import { AppComponent } from './app.component';
 import { NavigationBarComponent } from './widgets/navigation-bar/navigation-bar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NewQuestionComponent } from './views/new-question/new-question.component';
-import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { ErrorComponent } from './views/error/error.component';
 import {RouterModule} from "@angular/router";
 import routesDefinitions from "./app.routes-definitions";
@@ -13,25 +12,28 @@ import {environment} from "../environments/environment";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { QuestionCreatedComponent } from './views/question-created/question-created.component';
+import { QuestionPreviewComponent } from './views/question-preview/question-preview.component';
+import { ListQuestionsComponent } from './views/list-questions/list-questions.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationBarComponent,
     NewQuestionComponent,
-    DashboardComponent,
     ErrorComponent,
-    QuestionCreatedComponent
+    QuestionCreatedComponent,
+    QuestionPreviewComponent,
+    ListQuestionsComponent
   ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        RouterModule.forRoot(routesDefinitions),
-        HttpClientModule,
-        ReactiveFormsModule,
-        NgbModule,
-        FormsModule
-    ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    RouterModule.forRoot(routesDefinitions),
+    HttpClientModule,
+    ReactiveFormsModule,
+    NgbModule,
+    FormsModule
+  ],
   exports: [
     RouterModule
   ],

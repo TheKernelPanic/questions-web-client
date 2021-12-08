@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-question-created',
@@ -7,8 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuestionCreatedComponent implements OnInit {
 
-  public constructor() { }
+  public constructor(
+    private title: Title
+  ) { }
 
   public ngOnInit(): void {
+    this.title.setTitle('Question created successfully');
   }
 }

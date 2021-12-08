@@ -1,4 +1,4 @@
-<div class="container bg-white border border-secondary my-5 p-4">
+<div class="container bg-white my-5 py-4 px-5">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
       <div class="mb-4">
@@ -37,9 +37,6 @@
         <textarea class="form-control" formControlName="questionTitle" maxlength="255"></textarea>
       </div>
 
-      <div class="my-3">
-        <button type="button" class="btn btn-primary" (click)="addNewAnswer()">Add empty answer</button>
-      </div>
       <div class="pt-4" formArrayName="answers">
         <div *ngFor="let answer of answers().controls; let i = index;">
           <div class="row align-items-center my-2" [formGroupName]="i">
@@ -60,16 +57,28 @@
             </div>
             <!-- Remove -->
             <div class="col-1">
-              <div class="row">
-                <button class="btn btn-danger" type="button" (click)="removeAnswer(i)">Remove</button>
+              <div class="row justify-content-end">
+                <button class="btn btn-danger" type="button" (click)="removeAnswer(i)">
+                  <i class="bi bi-trash"></i>
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
 
+      <div class="row justify-content-end my-3">
+        <button type="button" class="btn btn-primary" (click)="addNewAnswer()">
+          <i class="bi bi-plus-square"></i>
+          Add answer
+        </button>
+      </div>
+
       <div class="my-5">
-        <button class="btn btn-success" type="submit">Save changes</button>
+        <button class="btn btn-success" type="submit">
+          <i class="bi bi-save"></i>
+          Save changes
+        </button>
       </div>
 
     </form>
