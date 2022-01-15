@@ -8,10 +8,10 @@
     <div class="col">
 
       <div class="row justify-content-end" *ngIf="question.topic">
-        <em>{{question.topic.description}}</em>
+        <em>{{question.topic?.description}}</em>
       </div>
       <div class="row" *ngIf="question.lesson">
-        <h5 class="h5">{{question.lesson.position}}. {{question.lesson.description}}</h5>
+        <h5 class="h5">{{question.lesson?.position}}. {{question.lesson?.description}}</h5>
       </div>
 
       <div class="row">
