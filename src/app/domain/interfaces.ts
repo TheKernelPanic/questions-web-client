@@ -1,6 +1,7 @@
 export interface Question {
   id?: string;
-  title: string;
+  title: string
+  observations: string|null;
   answers: Answer[];
   created_at?: string;
   updated_at?: string;

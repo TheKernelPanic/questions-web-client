@@ -157,6 +157,7 @@ export class NewQuestionComponent implements OnInit {
   private initializeForm(): void {
     this.form = new FormGroup({
       questionTitle: new FormControl('', Validators.required),
+      questionObservations: new FormControl(''),
       answers: this.formBuilder.array([])
     })
   }
@@ -164,6 +165,7 @@ export class NewQuestionComponent implements OnInit {
   private getHttpModel(): Question {
     const question: Question = {
       title: (this.form.get('questionTitle') as FormControl).value,
+      observations: (this.form.get('questionObservations') as FormControl).value.length ? (this.form.get('questionObservations') as FormControl).value : null,
       answers: []
     };
     for (let i = 0; i < (this.form.get('answers') as FormArray).length; i++) {
