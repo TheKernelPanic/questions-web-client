@@ -21,7 +21,7 @@ export class NewQuestionComponent implements OnInit {
   @ViewChild('newLessonModal') private newLessonModal: ElementRef<HTMLElement>;
 
   public form: FormGroup;
-  public maxAmountAnswers: number = 5;
+  public maxAmountAnswers: number = 6;
   public loader: boolean = false;
   public topics: Topic[];
   public books: Book[];
