@@ -3,6 +3,7 @@ import {ErrorComponent} from "./views/error/error.component";
 import {NewQuestionComponent} from "./views/new-question/new-question.component";
 import {QuestionCreatedComponent} from "./views/question-created/question-created.component";
 import {QuestionPreviewComponent} from "./views/question-preview/question-preview.component";
+import {ListQuestionsComponent} from "./views/list-questions/list-questions.component";
 
 const routesDefinitions: Routes = [
   {
@@ -20,6 +21,10 @@ const routesDefinitions: Routes = [
   {
     path: 'question-preview/:questionId',
     component: QuestionPreviewComponent
+  },
+  {
+    path: 'questions',
+    component: ListQuestionsComponent
   },
   {
     path: '',

@@ -13,6 +13,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { QuestionCreatedComponent } from './views/question-created/question-created.component';
 import { QuestionPreviewComponent } from './views/question-preview/question-preview.component';
+import { ListQuestionsComponent } from './views/list-questions/list-questions.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { QuestionPreviewComponent } from './views/question-preview/question-prev
     NewQuestionComponent,
     ErrorComponent,
     QuestionCreatedComponent,
-    QuestionPreviewComponent
+    QuestionPreviewComponent,
+    ListQuestionsComponent
   ],
   imports: [
     BrowserModule,
