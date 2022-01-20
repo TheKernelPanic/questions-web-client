@@ -43,6 +43,7 @@ export class NewQuestionComponent implements OnInit {
     private newQuestionService: NewQuestionService,
     private router: Router
   ) {
+    this.loader = true;
     this.topics = [];
     this.books = [];
     this.lessons = [];
