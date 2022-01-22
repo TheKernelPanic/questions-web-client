@@ -11,7 +11,7 @@
         <!-- Topic selector-->
         <div class="col-3">
           <label>Topic</label>
-          <select class="custom-select" [(ngModel)]="topicSelected" [ngModelOptions]="{standalone: true}" (change)="bookHttpService()">
+          <select class="custom-select custom-select-sm" [(ngModel)]="topicSelected" [ngModelOptions]="{standalone: true}" (change)="bookHttpService()">
             <option [ngValue]="topic" *ngFor="let topic of topics; let index = index">{{topic.description}}</option>
           </select>
         </div>
@@ -19,7 +19,7 @@
         <!-- Book selector -->
         <div class="col-3" *ngIf="books.length">
           <label>Book</label>
-          <select class="custom-select" [(ngModel)]="bookSelected" [ngModelOptions]="{standalone: true}" (change)="lessonHttpService()">
+          <select class="custom-select custom-select-sm" [(ngModel)]="bookSelected" [ngModelOptions]="{standalone: true}" (change)="lessonHttpService()">
             <option [ngValue]="book" *ngFor="let book of books; let index = index">{{book.title}}</option>
           </select>
         </div>
@@ -27,7 +27,7 @@
         <!-- Lesson selector -->
         <div class="col-6" *ngIf="lessons.length">
           <label>Lesson <a href="#" (click)="$event.preventDefault(); openNewLessonModal()">+ Add</a></label>
-          <select class="custom-select" [(ngModel)]="lessonSelected" [ngModelOptions]="{standalone: true}">
+          <select class="custom-select custom-select-sm" [(ngModel)]="lessonSelected" [ngModelOptions]="{standalone: true}">
             <option [ngValue]="lesson" *ngFor="let lesson of lessons; let index = index">{{lesson.position}}. {{lesson.description}}</option>
           </select>
         </div>
@@ -44,7 +44,7 @@
           <div class="row align-items-center my-2" [formGroupName]="i">
             <!-- Answer text -->
             <div class="col-10">
-              <input class="form-control" type="text" formControlName="text" placeholder="Answer {{i+1}}" maxlength="255"/>
+              <input class="form-control form-control-sm" type="text" formControlName="text" placeholder="Answer {{i+1}}" maxlength="255"/>
             </div>
             <!-- Answer result -->
             <div clasS="col-1">
@@ -60,7 +60,7 @@
             <!-- Remove -->
             <div class="col-1">
               <div class="row justify-content-end">
-                <button class="btn btn-danger" type="button" (click)="removeAnswer(i)">
+                <button class="btn btn-danger btn-sm" type="button" (click)="removeAnswer(i)">
                   <i class="bi bi-trash"></i>
                 </button>
               </div>
@@ -70,19 +70,41 @@
       </div>
 
       <div class="row justify-content-end my-3">
-        <button type="button" class="btn btn-primary" (click)="addNewAnswer()">
+        <button type="button" class="btn btn-primary btn-sm" (click)="addNewAnswer()">
           <i class="bi bi-plus-square"></i>
           Add answer
         </button>
       </div>
 
+      <app-help-selector [topic]="topicSelected" (onSelectHelp)="addHelp($event)" *ngIf="topicSelected"></app-help-selector>
+
+      <div class="row px-3 3" *ngIf="helps.length">
+        <div class="col px-2">
+          <div class="row py-2 border-bottom">
+            <h6 class="h6">Helps for question</h6>
+          </div>
+          <div class="row py-3" *ngFor="let help of helps">
+            <div class="col-9 small font-italic">
+              {{help.title}}
+            </div>
+            <div class="col-3 align-self-center">
+              <div class="row justify-content-end">
+                <button class="btn btn-danger btn-sm" type="button">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="form-group my-3">
         <label class="form-label">Observations</label>
-        <input class="form-control" formControlName="questionObservations" maxlength="255"/>
+        <input class="form-control form-control-sm" formControlName="questionObservations" maxlength="255"/>
       </div>
 
       <div class="my-5 px-2 row justify-content-end">
-        <button class="btn btn-success" type="submit">
+        <button class="btn btn-success btn-sm" type="submit">
           <i class="bi bi-save"></i>
           Save changes
         </button>
@@ -101,16 +123,16 @@
     <ng-template #newLessonModal let-modal>
       <div class="modal-body p-4">
         <form [formGroup]="newLessonForm" (ngSubmit)="saveNewLesson()">
-          <div class="my-4">
-            <h6 class="h6">
+          <div class="my-4 border-bottom">
+            <h4 class="h4">
               New lesson of <em *ngIf="this.bookSelected">{{this.bookSelected.title}}</em>
-            </h6>
+            </h4>
           </div>
           <div>
-            <input type="text" class="form-control" formControlName="description" maxlength="255" autocomplete="off" placeholder="Lesson title...">
+            <input type="text" class="form-control form-control-sm" formControlName="description" maxlength="255" autocomplete="off" placeholder="Lesson title...">
           </div>
-          <div class="my-4">
-            <button type="submit" class="btn btn-success">Save new lesson</button>
+          <div class="row my-4 justify-content-center">
+            <button type="submit" class="btn btn-success btn-sm">Save new lesson</button>
           </div>
         </form>
       </div>

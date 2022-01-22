@@ -1,12 +1,12 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {Book, Lesson, Question, Topic} from "../../domain/interfaces";
+import {Book, Help, Lesson, Question, Topic} from "../../domain/interfaces";
 import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {FindAllService} from "../../http-services/topic/find-all.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {FindByTopicService} from "../../http-services/book/find-by-topic.service";
 import {FindByBookService} from "../../http-services/lesson/find-by-book.service";
 import {Title} from "@angular/platform-browser";
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {NgbModal, NgbModalRef} from "@ng-bootstrap/ng-bootstrap";
 import {NewLessonService} from "../../http-services/lesson/new-lesson.service";
 import {NewQuestionService} from "../../http-services/question/new-question.service";
 import {Router} from "@angular/router";
@@ -18,7 +18,7 @@ import {Router} from "@angular/router";
 })
 export class NewQuestionComponent implements OnInit {
 
-  @ViewChild('newLessonModal') private newLessonModal: ElementRef<HTMLElement>;
+  @ViewChild('newLessonModal') private newLessonModal: ElementRef<NgbModalRef>;
 
   public form: FormGroup;
   public maxAmountAnswers: number = 6;
@@ -26,6 +26,7 @@ export class NewQuestionComponent implements OnInit {
   public topics: Topic[];
   public books: Book[];
   public lessons: Lesson[];
+  public helps: Help[];
   public formAsErrors: boolean;
   public lessonSelected: Lesson|null;
   public topicSelected: Topic|null;
@@ -47,6 +48,7 @@ export class NewQuestionComponent implements OnInit {
     this.topics = [];
     this.books = [];
     this.lessons = [];
+    this.helps = [];
     this.formAsErrors = false;
     this.lessonSelected = null;
     this.bookSelected = null;
@@ -183,6 +185,8 @@ export class NewQuestionComponent implements OnInit {
     if (this.lessonSelected !== null) {
       question.lesson = this.lessonSelected;
     }
+    question.helps = this.helps
+
     return question;
   }
 
@@ -210,6 +214,14 @@ export class NewQuestionComponent implements OnInit {
     this.newLessonForm = new FormGroup({
       description: new FormControl('', Validators.required)
     });
-    this.modalService.open(this.newLessonModal, {});
+    this.modalService.open(this.newLessonModal, {
+      centered: true
+    });
+  }
+
+  public addHelp(help: Help): void {
+    if (!this.helps.includes(help)) {
+      this.helps.push(help);
+    }
   }
 }

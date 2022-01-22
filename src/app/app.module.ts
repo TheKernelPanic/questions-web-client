@@ -14,6 +14,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { QuestionCreatedComponent } from './views/question-created/question-created.component';
 import { QuestionPreviewComponent } from './views/question-preview/question-preview.component';
 import { ListQuestionsComponent } from './views/list-questions/list-questions.component';
+import { HelpSelectorComponent } from './widgets/help-selector/help-selector.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ListQuestionsComponent } from './views/list-questions/list-questions.co
     ErrorComponent,
     QuestionCreatedComponent,
     QuestionPreviewComponent,
-    ListQuestionsComponent
+    ListQuestionsComponent,
+    HelpSelectorComponent
   ],
   imports: [
     BrowserModule,
