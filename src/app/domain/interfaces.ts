@@ -7,7 +7,20 @@ export interface Question {
   updated_at?: string;
   topic?: Topic|null;
   lesson?: Lesson|null;
+  helps?: Help[];
 }
+
+export interface Help {
+  id?: string;
+  title: string;
+  content: string;
+  mimetype: string;
+  created_at?: string;
+  updated_at?: string|null;
+  topic?: Topic|null;
+  lesson?: Lesson|null;
+}
+
 export interface Answer {
   id?: string;
   text: string;
