@@ -7,31 +7,7 @@
         </h4>
       </div>
 
-      <div class="row mb-3 pb-3 border-bottom border-light">
-        <!-- Topic selector-->
-        <div class="col-3">
-          <label>Topic</label>
-          <select class="custom-select custom-select-sm" [(ngModel)]="topicSelected" [ngModelOptions]="{standalone: true}" (change)="bookHttpService()">
-            <option [ngValue]="topic" *ngFor="let topic of topics; let index = index">{{topic.description}}</option>
-          </select>
-        </div>
-
-        <!-- Book selector -->
-        <div class="col-3" *ngIf="books.length">
-          <label>Book</label>
-          <select class="custom-select custom-select-sm" [(ngModel)]="bookSelected" [ngModelOptions]="{standalone: true}" (change)="lessonHttpService()">
-            <option [ngValue]="book" *ngFor="let book of books; let index = index">{{book.title}}</option>
-          </select>
-        </div>
-
-        <!-- Lesson selector -->
-        <div class="col-6" *ngIf="lessons.length">
-          <label>Lesson <a href="#" (click)="$event.preventDefault(); openNewLessonModal()">+ Add</a></label>
-          <select class="custom-select custom-select-sm" [(ngModel)]="lessonSelected" [ngModelOptions]="{standalone: true}">
-            <option [ngValue]="lesson" *ngFor="let lesson of lessons; let index = index">{{lesson.position}}. {{lesson.description}}</option>
-          </select>
-        </div>
-      </div>
+      <app-topic-selector (selectTopic)="topicSelected=$event" (selectLesson)="lessonSelected=$event"></app-topic-selector>
 
       <!-- Question title -->
       <div class="form-group my-2">
@@ -119,22 +95,4 @@
       </div>
     </ng-template>
 
-    <!-- New lesson modal -->
-    <ng-template #newLessonModal let-modal>
-      <div class="modal-body p-4">
-        <form [formGroup]="newLessonForm" (ngSubmit)="saveNewLesson()">
-          <div class="my-4 border-bottom">
-            <h4 class="h4">
-              New lesson of <em *ngIf="this.bookSelected">{{this.bookSelected.title}}</em>
-            </h4>
-          </div>
-          <div>
-            <input type="text" class="form-control form-control-sm" formControlName="description" maxlength="255" autocomplete="off" placeholder="Lesson title...">
-          </div>
-          <div class="row my-4 justify-content-center">
-            <button type="submit" class="btn btn-success btn-sm">Save new lesson</button>
-          </div>
-        </form>
-      </div>
-    </ng-template>
 </div>
