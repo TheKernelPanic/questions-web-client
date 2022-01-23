@@ -18,6 +18,7 @@ export interface Help {
   created_at?: string;
   updated_at?: string|null;
   topic?: Topic|null;
+  book?: Book|null;
   lesson?: Lesson|null;
 }
 
