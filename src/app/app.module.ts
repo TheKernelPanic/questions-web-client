@@ -15,6 +15,8 @@ import { QuestionCreatedComponent } from './views/question-created/question-crea
 import { QuestionPreviewComponent } from './views/question-preview/question-preview.component';
 import { ListQuestionsComponent } from './views/list-questions/list-questions.component';
 import { HelpSelectorComponent } from './widgets/help-selector/help-selector.component';
+import { NewHelpComponent } from './views/new-help/new-help.component';
+import { TopicSelectorComponent } from './widgets/topic-selector/topic-selector.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { HelpSelectorComponent } from './widgets/help-selector/help-selector.com
     QuestionCreatedComponent,
     QuestionPreviewComponent,
     ListQuestionsComponent,
-    HelpSelectorComponent
+    HelpSelectorComponent,
+    NewHelpComponent,
+    TopicSelectorComponent
   ],
   imports: [
     BrowserModule,
