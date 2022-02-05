@@ -8,6 +8,7 @@ export interface Question {
   topic?: Topic|null;
   lesson?: Lesson|null;
   helps?: Help[];
+  tags?: Tag[];
 }
 
 export interface Help {
@@ -45,4 +46,11 @@ export interface Lesson {
   book?: Book|null;
   description: string;
   position: number;
+}
+
+export interface Tag {
+  raw_text: string;
+  slug: string|null;
+  id?: string;
+  created_at?: string;
 }
