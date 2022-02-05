@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Book, Help, Lesson, Question, Topic} from "../../domain/interfaces";
+import {Book, Help, Lesson, Question, Tag, Topic} from "../../domain/interfaces";
 import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {HttpErrorResponse} from "@angular/common/http";
 import {Title} from "@angular/platform-browser";
@@ -17,6 +17,7 @@ export class NewQuestionComponent implements OnInit {
   public maxAmountAnswers: number = 6;
   public loader: boolean = false;
   public helps: Help[];
+  public tags: Tag[];
   public formAsErrors: boolean;
   public lessonSelected: Lesson|null;
   public topicSelected: Topic|null;
@@ -29,6 +30,7 @@ export class NewQuestionComponent implements OnInit {
   ) {
     this.loader = false;
     this.helps = [];
+    this.tags = [];
     this.formAsErrors = false;
     this.lessonSelected = null;
     this.topicSelected = null;

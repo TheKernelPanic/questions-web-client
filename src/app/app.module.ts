@@ -17,6 +17,7 @@ import { ListQuestionsComponent } from './views/list-questions/list-questions.co
 import { HelpSelectorComponent } from './widgets/help-selector/help-selector.component';
 import { NewHelpComponent } from './views/new-help/new-help.component';
 import { TopicSelectorComponent } from './widgets/topic-selector/topic-selector.component';
+import { TagsSelectorComponent } from './widgets/tags-selector/tags-selector.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { TopicSelectorComponent } from './widgets/topic-selector/topic-selector.
     ListQuestionsComponent,
     HelpSelectorComponent,
     NewHelpComponent,
-    TopicSelectorComponent
+    TopicSelectorComponent,
+    TagsSelectorComponent
   ],
   imports: [
     BrowserModule,

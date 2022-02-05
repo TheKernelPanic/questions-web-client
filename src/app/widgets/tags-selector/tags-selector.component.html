@@ -1,0 +1,18 @@
+<div class="row">
+  <button class="btn btn-sm btn-primary" (click)="openModal()" type="button">
+    <i class="bi bi-plus-square"></i> Add tags
+  </button>
+</div>
+<ng-template #tagModal>
+  <form (ngSubmit)="onSubmit()" [formGroup]="form" class="p-4">
+    <div class="form-group my-2">
+      <label class="small">Tag text</label>
+      <input type="text" class="form-control form-control-sm" formControlName="rawText" maxlength="255" [disabled]="loader"/>
+    </div>
+    <div class="row justify-content-center border-top my-4 pt-3">
+      <button class="btn btn-success btn-sm" type="submit" [disabled]="loader">
+        <i class="bi bi-save"></i> Save
+      </button>
+    </div>
+  </form>
+</ng-template>
