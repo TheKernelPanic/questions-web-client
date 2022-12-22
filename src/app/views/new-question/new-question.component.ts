@@ -108,7 +108,8 @@ export class NewQuestionComponent implements OnInit {
     if (this.lessonSelected !== null) {
       question.lesson = this.lessonSelected;
     }
-    question.helps = this.helps
+    question.helps = this.helps;
+    question.tags = this.tags;
 
     return question;
   }
