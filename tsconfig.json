@@ -20,7 +20,12 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@Question/*": ["src/app/question/*"],
+      "@Help/*": ["src/app/help/*"],
+      "@HttpApi/*": ["src/app/services/http/*"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
