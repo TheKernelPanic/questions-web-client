@@ -10,21 +10,25 @@ export default class LessonHttpService extends BaseHttpService {
 
   public findAll(): Observable<Lesson[]> {
     return this.httpClient.get<Lesson[]>(
-      this.applicationServerHost + '/getLessons'
+      this.getUrl('list')
     );
   }
 
   public findByBook(bookId: string): Observable<Lesson[]> {
     return this.httpClient.get<Lesson[]>(
-      this.applicationServerHost + '/getLessonsByBook/' + bookId
+      this.getUrl('list-by-lesson') + '/' + bookId
     );
   }
 
   public create(lesson: Lesson): Observable<void> {
     return this.httpClient.post<void>(
-      this.applicationServerHost + '/newLesson',
+      this.getUrl('create'),
       lesson
     );
+  }
+
+  protected getUrl(uri: string): string {
+    return super.getUrl('lesson') + '/' + uri;
   }
 
 }

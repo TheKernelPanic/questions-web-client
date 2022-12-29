@@ -10,20 +10,25 @@ export default class QuestionHttpService extends BaseHttpService {
 
   public findAll(): Observable<Question[]> {
     return this.httpClient.get<Question[]>(
-      this.applicationServerHost + '/getQuestions'
+      this.getUrl('list')
     );
   }
 
   public find(questionId: string): Observable<Question> {
     return this.httpClient.get<Question>(
-      this.applicationServerHost + '/getQuestion/' + questionId
+      this.getUrl('find') + '/' + questionId
     );
   }
 
   public create(question: Question): Observable<void> {
     return this.httpClient.post<void>(
-      this.applicationServerHost + '/newQuestion',
+      this.getUrl('create'),
       question
     );
   }
+
+  protected getUrl(uri: string): string {
+    return super.getUrl('question') + '/' + uri;
+  }
+
 }

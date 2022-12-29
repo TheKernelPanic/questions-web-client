@@ -10,9 +10,13 @@ export default class TagHttpService extends BaseHttpService {
 
   public create(tag: Tag): Observable<Tag> {
     return this.httpClient.post<Tag>(
-      this.applicationServerHost + '/newTag',
+      this.getUrl('create'),
       tag
     );
+  }
+
+  protected getUrl(uri: string): string {
+    return super.getUrl('tag') + '/' + uri;
   }
 
 }

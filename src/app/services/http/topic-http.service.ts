@@ -10,8 +10,11 @@ export default class TopicHttpService extends BaseHttpService {
 
   public findAll(): Observable<Topic[]> {
     return this.httpClient.get<Topic[]>(
-      this.applicationServerHost + '/getTopics'
+      this.getUrl('list')
     );
   }
 
+  protected getUrl(uri: string): string {
+    return super.getUrl('topic') + '/' + uri;
+  }
 }
