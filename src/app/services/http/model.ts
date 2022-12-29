@@ -54,3 +54,15 @@ export interface Tag {
   id?: string;
   created_at?: string;
 }
+
+export interface Questionnaire {
+  title: string;
+  code?: string;
+  topic: Topic;
+  questions: QuestionnaireQuestion[];
+}
+
+export interface QuestionnaireQuestion {
+  position: number;
+  question: Question;
+}

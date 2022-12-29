@@ -24,7 +24,8 @@
     "paths": {
       "@Question/*": ["src/app/question/*"],
       "@Help/*": ["src/app/help/*"],
-      "@HttpApi/*": ["src/app/services/http/*"]
+      "@HttpApi/*": ["src/app/services/http/*"],
+      "@Questionnaire/*": ["src/app/questionnaire/*"]
     }
   },
   "angularCompilerOptions": {

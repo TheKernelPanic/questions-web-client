@@ -15,6 +15,6 @@ export default class BookHttpService extends BaseHttpService {
   }
 
   protected getUrl(uri: string): string {
-    return super.getUrl('topic') + '/' + uri;
+    return super.getUrl('book') + '/' + uri;
   }
 }

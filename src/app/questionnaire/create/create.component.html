@@ -1,0 +1,26 @@
+<app-content-wrapper>
+  <div>
+  </div>
+  <div>
+    <!-- Basic information -->
+    <form [formGroup]="formGroup" (ngSubmit)="submit()">
+      <div class="p-3 row justify-content-end">
+        <button class="btn btn-sm btn-primary" type="submit" [disabled]="formGroup.invalid">
+          Save
+        </button>
+      </div>
+      <div>
+        <label class="form-label">Title</label>
+        <input class="form-control form-control-sm" type="text" maxlength="255" formControlName="title"/>
+      </div>
+    </form>
+  </div>
+  <!-- Topic selection -->
+  <div class="my-2">
+    <app-topic-selector (selectTopic)="topicSelected=$event"></app-topic-selector>
+  </div>
+  <!-- Questions list -->
+  <div>
+    <app-questions-list-editor [questionnaireQuestions]="questionnaireQuestions"></app-questions-list-editor>
+  </div>
+</app-content-wrapper>

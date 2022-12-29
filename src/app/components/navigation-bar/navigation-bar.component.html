@@ -4,15 +4,44 @@
   </a>
   <div class="navbar-collapse border-left border-secondary mr-3">
     <ul class="navbar-nav">
-      <li class="nav-item">
-        <a href="/question/create" class="nav-link small text-white text-decoration-none">
-          New question
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="questionDropdown" role="button" aria-expanded="false">
+          Questions
         </a>
+        <ul class="dropdown-menu" aria-labelledby="questionDropdown">
+          <li>
+            <a class="dropdown-item" href="/question/list">List</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="/question/create">Create</a>
+          </li>
+        </ul>
       </li>
-      <li class="nav-item">
-        <a href="/help/create" class="nav-link small text-white text-decoration-none">
-          New Help
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="helpDropdown" role="button" aria-expanded="false">
+          Help
         </a>
+        <ul class="dropdown-menu" aria-labelledby="helpDropdown">
+          <li>
+            <a class="dropdown-item" href="/help/list">List</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="/help/create">Create</a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="questionnaireDropdown" role="button" aria-expanded="false">
+          Questionnaire
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="questionnaireDropdown">
+          <li>
+            <a class="dropdown-item" href="/questionnaire/list">List</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="/questionnaire/create">Create</a>
+          </li>
+        </ul>
       </li>
     </ul>
   </div>
