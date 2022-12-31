@@ -7,7 +7,7 @@
       </h4>
     </div>
 
-    <app-topic-selector (selectTopic)="topicSelected=$event" (selectBook)="bookSelected=$event" (selectLesson)="lessonSelected=$event"></app-topic-selector>
+    <app-topic-selector (onTopicSelection)="topicSelected=$event"></app-topic-selector>
 
     <!-- Help title -->
     <div class="form-group my-2">

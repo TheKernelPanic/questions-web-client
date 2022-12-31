@@ -1,9 +1,9 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
-import {Question, QuestionnaireQuestion} from "@HttpApi/model";
+import {Question, QuestionnaireQuestion, Topic} from "@HttpApi/model";
 import QuestionHttpService from "@HttpApi/question-http.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {HttpErrorResponse} from "@angular/common/http";
-import {SortableEvent, SortableOptions} from "sortablejs";
+import {SortableOptions} from "sortablejs";
 
 @Component({
   selector: 'app-questions-list-editor',
@@ -14,11 +14,12 @@ export class QuestionsListEditorComponent implements OnInit {
 
   @ViewChild('questionsSelectorModal') public questionsSelectorModal: ElementRef<NgbModal>;
   @Input() public questionnaireQuestions: QuestionnaireQuestion[];
+  @Input() public topic: Topic;
 
   public loader: boolean = false;
   public questionsAvailable: Question[] = [];
   public sortableJsOptions: SortableOptions = {
-    onUpdate: (event: SortableEvent) => {
+    onUpdate: () => {
       this.updatePositionValues();
     }
   };
@@ -38,7 +39,7 @@ export class QuestionsListEditorComponent implements OnInit {
     });
     // TODO: Filter by topic (REST)
     this.loader = true;
-    this.questionHttpService.findAll().subscribe({
+    this.questionHttpService.findAllByTopic(this.topic).subscribe({
       next: (response: Question[]) => {
         this.questionsAvailable = response;
         this.loader = false;
@@ -52,7 +53,7 @@ export class QuestionsListEditorComponent implements OnInit {
   public select(question: Question): void {
     this.questionnaireQuestions.push({
       question,
-      position: this.questionnaireQuestions.length
+      position: this.questionnaireQuestions.length+1
     });
   }
 
@@ -62,7 +63,7 @@ export class QuestionsListEditorComponent implements OnInit {
 
   private updatePositionValues(): void {
     this.questionnaireQuestions.forEach((questionnaireQuestion: QuestionnaireQuestion, index: number) => {
-      questionnaireQuestion.position = index;
+      questionnaireQuestion.position = ++index;
     });
   }
 }

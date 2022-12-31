@@ -1,7 +1,7 @@
 import {BaseHttpService} from "./base-http.service";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
-import {Question} from "./model";
+import {Question, Topic} from "./model";
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +24,12 @@ export default class QuestionHttpService extends BaseHttpService {
     return this.httpClient.post<void>(
       this.getUrl('create'),
       question
+    );
+  }
+
+  public findAllByTopic(topic: Topic): Observable<Question[]> {
+    return this.httpClient.get<Question[]>(
+      this.getUrl('list-by-topic') + '/' + topic.id
     );
   }
 

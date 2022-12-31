@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {Help, Lesson, Question, Tag, Topic} from "@HttpApi/model";
+import {Book, Help, Lesson, Question, Tag, Topic} from "@HttpApi/model";
 import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {HttpErrorResponse} from "@angular/common/http";
 import {Title} from "@angular/platform-browser";
 import {Router} from "@angular/router";
 import QuestionHttpService from "@HttpApi/question-http.service";
+import {Subject} from "rxjs";
 
 @Component({
   selector: 'app-question-create',
@@ -18,9 +19,15 @@ export class CreateComponent implements OnInit {
   public loader: boolean = false;
   public helps: Help[];
   public tags: Tag[];
-  public formAsErrors: boolean;
-  public lessonSelected: Lesson|null;
-  public topicSelected: Topic|null;
+
+  public topicSelected: Topic|null = null;
+  public topicSelectionSubject: Subject<Topic> = new Subject<Topic>();
+
+  public bookSelected: Book|null = null;
+  public bookSelectionSubject: Subject<Book> = new Subject<Book>();
+
+  public lessonSelected: Lesson|null = null;
+
 
   public constructor(
     private formBuilder: FormBuilder,
@@ -31,16 +38,11 @@ export class CreateComponent implements OnInit {
     this.loader = false;
     this.helps = [];
     this.tags = [];
-    this.formAsErrors = false;
-    this.lessonSelected = null;
-    this.topicSelected = null;
   }
 
   public ngOnInit(): void {
-    this.title.setTitle('Backoffice - Question creation');
+    //this.title.setTitle('Backoffice - Question creation');
     this.initializeForm();
-    this.addNewAnswer();
-    this.addNewAnswer();
     this.addNewAnswer();
   }
 
@@ -66,7 +68,6 @@ export class CreateComponent implements OnInit {
 
   public onSubmit(): void {
     if (this.form.invalid) {
-      this.formAsErrors = true;
       return;
     }
     this.loader = true;
@@ -118,5 +119,15 @@ export class CreateComponent implements OnInit {
     if (!this.helps.includes(help)) {
       this.helps.push(help);
     }
+  }
+
+  public onTopicSelected(topic: Topic): void {
+    this.topicSelected = topic;
+    this.topicSelectionSubject.next(topic);
+  }
+
+  public onBookSelected(book: Book): void {
+    this.bookSelectionSubject.next(book);
+    this.bookSelected = book;
   }
 }

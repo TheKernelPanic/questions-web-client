@@ -5,7 +5,10 @@
         New question
       </h4>
     </div>
-    <app-topic-selector (selectTopic)="topicSelected=$event" (selectLesson)="lessonSelected=$event"></app-topic-selector>
+    <app-topic-selector (onTopicSelection)="onTopicSelected($event)"></app-topic-selector>
+    <app-book-selector [topicSelected]="topicSelectionSubject" (onBookSelection)="onBookSelected($event)"></app-book-selector>
+    <app-lesson-selector [bookSelected]="bookSelectionSubject" (onLessonSelection)="lessonSelected=$event"></app-lesson-selector>
+
     <!-- Question title -->
     <div class="form-group my-2">
       <label class="small">Title</label>

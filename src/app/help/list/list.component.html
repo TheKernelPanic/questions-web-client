@@ -1,1 +1,21 @@
-<p>list works!</p>
+<app-content-wrapper>
+  <app-topic-selector (onTopicSelection)="onTopicSelection($event)"></app-topic-selector>
+  <app-spinner-loader [loader]="loader">
+    <div class="row px-3" content>
+      <div class="col">
+        <div class="row my-3 border-bottom border-light" *ngFor="let help of this.helps">
+          <div class="col">
+            <app-help-card [help]="help">
+              <div class="row justify-content-end" actions>
+                <button class="btn btn-sm btn-primary">
+                  <i class="bi bi-eye"></i>
+                  View help
+                </button>
+              </div>
+            </app-help-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </app-spinner-loader>
+</app-content-wrapper>

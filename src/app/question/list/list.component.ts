@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Question} from "@HttpApi/model";
+import {Question, Topic} from "@HttpApi/model";
 import {HttpErrorResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {Title} from "@angular/platform-browser";
@@ -12,28 +12,30 @@ import QuestionHttpService from "@HttpApi/question-http.service";
 })
 export class ListComponent implements OnInit {
 
-  public loader: boolean;
-  public questions: Question[];
+  public loader: boolean = false;
+  public questions: Question[] = [];
 
   public constructor(
     private questionHttpService: QuestionHttpService,
     private router: Router,
     private title: Title
   ) {
-    this.questions = [];
-    this.loader = true;
   }
 
   public ngOnInit(): void {
-    this.title.setTitle('Backoffice - Questions')
-    this.questionHttpService.findAll().subscribe({
+    //this.title.setTitle('Questions');
+  }
+
+  public fetchQuestions(topic: Topic): void {
+    this.loader = true;
+    this.questionHttpService.findAllByTopic(topic).subscribe({
       next: (questions: Question[]) => {
         this.questions = questions;
+        this.loader = false;
       },
       error: (error: HttpErrorResponse) => {
         throw new Error(error.message);
-      },
-      complete: () => this.loader = false
+      }
     });
   }
 

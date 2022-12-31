@@ -1,0 +1,16 @@
+<div class="row card p-3 my-2">
+  <div class="col">
+    <div class="row">
+      <h5 class="h5">{{question.title}}</h5>
+    </div>
+    <div class="row font-italic">
+      {{question.topic?.description}}
+    </div>
+    <div class="row small text-secondary" *ngIf="question.observations">
+      {{question.observations}}
+    </div>
+    <div>
+      <ng-content select="[actions]"></ng-content>
+    </div>
+  </div>
+</div>

@@ -1,19 +1,19 @@
 <div>
   <div class="py-4 row">
     <div class="col-12">
-      <button class="btn btn-sm btn-success" (click)="selectQuestions()">
+      <button class="btn btn-sm btn-primary" (click)="selectQuestions()">
         Add question
       </button>
     </div>
   </div>
 
-  <div class="row border border-secondary">
+  <div class="row">
     <!-- Sortable questions list -->
-    <div class="col" [sortablejs]="questionnaireQuestions" [sortablejsOptions]="sortableJsOptions">
-      <div class="row px-2 my-3" *ngFor="let questionnaireQuestion of questionnaireQuestions; let i = index; trackBy: trackByQuestionnaireQuestions">
+    <div class="col bg-light" [sortablejs]="questionnaireQuestions" [sortablejsOptions]="sortableJsOptions">
+      <div class="row px-2 my-3 mx-1 bg-white" *ngFor="let questionnaireQuestion of questionnaireQuestions; let i = index; trackBy: trackByQuestionnaireQuestions">
         <div class="col-10">
           <div class="row small font-weight-bold text-secondary pl-2">
-            {{questionnaireQuestion.question.title}}
+            {{questionnaireQuestion.position}}.{{questionnaireQuestion.question.title}}
           </div>
         </div>
         <div class="col-2">

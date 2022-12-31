@@ -6,7 +6,7 @@ import {Title} from "@angular/platform-browser";
 import QuestionHttpService from "@HttpApi/question-http.service";
 
 @Component({
-  selector: 'app-question-preview',
+  selector: 'app-question-detail',
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.scss']
 })
