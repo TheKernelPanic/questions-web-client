@@ -10,7 +10,7 @@ export default class BookHttpService extends BaseHttpService {
 
   public findByTopic(topic: Topic): Observable<Book[]> {
     return this.httpClient.get<Book[]>(
-      this.getUrl('list-by-topic') + '/' + topic.id
+      this.getUrl('list-by-topic/' + topic.id)
     );
   }
 

@@ -9,6 +9,7 @@ export interface Question {
   lesson?: Lesson|null;
   helps?: Help[];
   tags?: Tag[];
+  image: FileUploaded|null;
 }
 
 export interface Help {
@@ -65,4 +66,13 @@ export interface Questionnaire {
 export interface QuestionnaireQuestion {
   position: number;
   question: Question;
+}
+
+export interface FileUploaded {
+  id?: string;
+  filename: string;
+  mimetype: string;
+  processed: boolean;
+  created_at?: string;
+  updated_at?: string|null;
 }

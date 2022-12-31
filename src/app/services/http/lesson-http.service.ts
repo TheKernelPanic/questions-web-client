@@ -17,7 +17,7 @@ export default class LessonHttpService extends BaseHttpService {
 
   public findByBook(book: Book): Observable<Lesson[]> {
     return this.httpClient.get<Lesson[]>(
-      this.getUrl('list-by-book') + '/' + book.id
+      this.getUrl('list-by-book/' + book.id)
     );
   }
 

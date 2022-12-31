@@ -9,6 +9,21 @@
     <app-book-selector [topicSelected]="topicSelectionSubject" (onBookSelection)="onBookSelected($event)"></app-book-selector>
     <app-lesson-selector [bookSelected]="bookSelectionSubject" (onLessonSelection)="lessonSelected=$event"></app-lesson-selector>
 
+    <!-- Question image-->
+    <div class="form-group my-2">
+      <div class="input-group" *ngIf="image; else uploader">
+        <input type="text" class="form-control-sm" [disabled]="true" [value]="image.filename">
+        <div class="input-group-append">
+          <button class="btn btn-danger btn-sm" type="button" (click)="image=null">
+            <i class="bi bi-trash"></i>
+          </button>
+        </div>
+      </div>
+      <ng-template #uploader>
+        <app-image-uploader (onImageUploaded)="image=$event"></app-image-uploader>
+      </ng-template>
+    </div>
+
     <!-- Question title -->
     <div class="form-group my-2">
       <label class="small">Title</label>

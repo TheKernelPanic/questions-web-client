@@ -12,6 +12,7 @@ import { LessonSelectorComponent } from './lesson-selector/lesson-selector.compo
 import { HelpCardComponent } from './help-card/help-card.component';
 import { SpinnerLoaderComponent } from './spinner-loader/spinner-loader.component';
 import { QuestionCardComponent } from './question-card/question-card.component';
+import { ImageUploaderComponent } from './image-uploader/image-uploader.component';
 
 
 
@@ -25,7 +26,8 @@ import { QuestionCardComponent } from './question-card/question-card.component';
     LessonSelectorComponent,
     HelpCardComponent,
     SpinnerLoaderComponent,
-    QuestionCardComponent
+    QuestionCardComponent,
+    ImageUploaderComponent
   ],
   imports: [
     CommonModule,
@@ -43,7 +45,8 @@ import { QuestionCardComponent } from './question-card/question-card.component';
     LessonSelectorComponent,
     HelpCardComponent,
     QuestionCardComponent,
-    SpinnerLoaderComponent
+    SpinnerLoaderComponent,
+    ImageUploaderComponent
   ]
 })
 export class ComponentsModule { }

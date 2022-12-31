@@ -16,7 +16,7 @@ export default class QuestionHttpService extends BaseHttpService {
 
   public find(questionId: string): Observable<Question> {
     return this.httpClient.get<Question>(
-      this.getUrl('find') + '/' + questionId
+      this.getUrl('find/' + questionId)
     );
   }
 
@@ -29,7 +29,7 @@ export default class QuestionHttpService extends BaseHttpService {
 
   public findAllByTopic(topic: Topic): Observable<Question[]> {
     return this.httpClient.get<Question[]>(
-      this.getUrl('list-by-topic') + '/' + topic.id
+      this.getUrl('list-by-topic/' + topic.id)
     );
   }
 

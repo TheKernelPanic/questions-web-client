@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Book, Help, Lesson, Question, Tag, Topic} from "@HttpApi/model";
+import {Book, FileUploaded, Help, Lesson, Question, Tag, Topic} from "@HttpApi/model";
 import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {HttpErrorResponse} from "@angular/common/http";
 import {Title} from "@angular/platform-browser";
@@ -19,15 +19,12 @@ export class CreateComponent implements OnInit {
   public loader: boolean = false;
   public helps: Help[];
   public tags: Tag[];
-
   public topicSelected: Topic|null = null;
   public topicSelectionSubject: Subject<Topic> = new Subject<Topic>();
-
   public bookSelected: Book|null = null;
   public bookSelectionSubject: Subject<Book> = new Subject<Book>();
-
   public lessonSelected: Lesson|null = null;
-
+  public image: FileUploaded|null = null;
 
   public constructor(
     private formBuilder: FormBuilder,
@@ -93,7 +90,8 @@ export class CreateComponent implements OnInit {
     const question: Question = {
       title: (this.form.get('questionTitle') as FormControl).value,
       observations: (this.form.get('questionObservations') as FormControl).value.length ? (this.form.get('questionObservations') as FormControl).value : null,
-      answers: []
+      answers: [],
+      image: this.image
     };
     for (let i = 0; i < (this.form.get('answers') as FormArray).length; i++) {
       const group: AbstractControl = (this.form.get('answers') as FormArray).at(i);

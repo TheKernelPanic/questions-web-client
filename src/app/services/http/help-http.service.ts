@@ -10,7 +10,7 @@ export default class HelpHttpService extends BaseHttpService {
 
   public findAllByTopic(topic: Topic): Observable<Help[]> {
     return this.httpClient.get<Help[]>(
-      this.getUrl('list-by-topic') + '/' + topic.id
+      this.getUrl('list-by-topic/' + topic.id)
     );
   }
 
