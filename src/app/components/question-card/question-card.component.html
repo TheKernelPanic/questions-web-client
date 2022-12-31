@@ -1,12 +1,19 @@
-<div class="row card p-3 my-2">
-  <div class="col">
+<div class="row my-3">
+  <div class="col-4">
+    <img class="img-thumbnail" [src]="question.image | imageSourceResolver"  alt="Question image"/>
+  </div>
+  <div class="col-8">
     <div class="row">
-      <h5 class="h5">{{question.title}}</h5>
+      <h6 class="h6">{{question.title}}</h6>
     </div>
     <div class="row font-italic">
-      {{question.topic?.description}}
+      <div class="col">
+        <p class="small m-0" *ngFor="let answer of question.answers">
+          -{{answer.text}}
+        </p>
+      </div>
     </div>
-    <div class="row small text-secondary" *ngIf="question.observations">
+    <div class="row small text-secondary mt-2" *ngIf="question.observations">
       {{question.observations}}
     </div>
     <div>

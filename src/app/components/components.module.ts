@@ -13,6 +13,7 @@ import { HelpCardComponent } from './help-card/help-card.component';
 import { SpinnerLoaderComponent } from './spinner-loader/spinner-loader.component';
 import { QuestionCardComponent } from './question-card/question-card.component';
 import { ImageUploaderComponent } from './image-uploader/image-uploader.component';
+import {PipesModule} from "../pipes/pipes.module";
 
 
 
@@ -34,7 +35,8 @@ import { ImageUploaderComponent } from './image-uploader/image-uploader.componen
     FormsModule,
     ReactiveFormsModule,
     NgbDropdownModule,
-    RouterModule
+    RouterModule,
+    PipesModule
   ],
   exports: [
     NavigationBarComponent,
