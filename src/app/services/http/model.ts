@@ -60,6 +60,7 @@ export interface Questionnaire {
   title: string;
   code?: string;
   topic: Topic;
+  enabled: boolean;
   questions: QuestionnaireQuestion[];
 }
 

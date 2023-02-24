@@ -1,17 +1,19 @@
 <div class="row">
   <div class="col">
-    <label class="small">
-      Book
-    </label>
-    <select
-      class="custom-select custom-select-sm"
-      [(ngModel)]="bookSelected"
-      [ngModelOptions]="{standalone: true}"
-      (change)="onChangeBook()"
-      [disabled]="loader">
-      <option [ngValue]="book" *ngFor="let book of books; let index = index">
-        {{book.title}}
-      </option>
-    </select>
+    <div class="form-group">
+      <label class="form-label small">
+        Book
+      </label>
+      <select
+        class="form-select form-select-sm"
+        [(ngModel)]="bookSelected"
+        [ngModelOptions]="{standalone: true}"
+        (change)="onChangeBook()"
+        [disabled]="loader">
+        <option [ngValue]="book" *ngFor="let book of books; let index = index">
+          {{book.title}}
+        </option>
+      </select>
+    </div>
   </div>
 </div>

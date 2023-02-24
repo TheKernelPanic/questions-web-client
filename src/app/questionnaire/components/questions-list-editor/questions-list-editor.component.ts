@@ -3,7 +3,6 @@ import {Question, QuestionnaireQuestion, Topic} from "@HttpApi/model";
 import QuestionHttpService from "@HttpApi/question-http.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {HttpErrorResponse} from "@angular/common/http";
-import {SortableOptions} from "sortablejs";
 
 @Component({
   selector: 'app-questions-list-editor',
@@ -18,11 +17,6 @@ export class QuestionsListEditorComponent implements OnInit {
 
   public loader: boolean = false;
   public questionsAvailable: Question[] = [];
-  public sortableJsOptions: SortableOptions = {
-    onUpdate: () => {
-      this.updatePositionValues();
-    }
-  };
 
   public constructor(
     private questionHttpService: QuestionHttpService,

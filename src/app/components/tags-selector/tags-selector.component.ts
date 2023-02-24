@@ -1,5 +1,4 @@
 import {Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
-
 import {Tag} from "@HttpApi/model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {HttpErrorResponse} from "@angular/common/http";
@@ -31,7 +30,7 @@ export class TagsSelectorComponent implements OnInit {
 
   public ngOnInit(): void {
     this.form = new FormGroup({
-      rawText: new FormControl('', Validators.required)
+      rawText: new FormControl({value: '', disabled: this.loader}, Validators.required)
     });
   }
 
@@ -41,7 +40,7 @@ export class TagsSelectorComponent implements OnInit {
     }
     this.loader = true;
     const body: Tag = {
-      raw_text: (this.form.get('rawText') as FormControl).value as string,
+      raw_text: this.form.get('rawText')?.value ,
       slug: null
     };
     this.tagHttpService.create(body).subscribe({

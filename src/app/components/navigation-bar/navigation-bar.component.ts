@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {NgbDropdownModule} from "@ng-bootstrap/ng-bootstrap";
+import {Component, Inject, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -8,7 +7,9 @@ import {NgbDropdownModule} from "@ng-bootstrap/ng-bootstrap";
 })
 export class NavigationBarComponent implements OnInit {
 
-  public constructor() { }
+  public constructor(
+    @Inject('APP_VERSION') public appVersion: string
+  ) { }
 
   public ngOnInit(): void {
   }

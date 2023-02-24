@@ -107,5 +107,7 @@
       }
     }
   },
-  "defaultProject": "questions-backoffice"
+  "cli": {
+    "analytics": false
+  }
 }

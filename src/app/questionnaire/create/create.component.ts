@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {Questionnaire, QuestionnaireQuestion, Topic} from "@HttpApi/model";
 import QuestionnaireHttpService from "@HttpApi/questionnaire-http.service";
 import {Router} from "@angular/router";
@@ -12,8 +12,8 @@ import {HttpErrorResponse} from "@angular/common/http";
 })
 export class CreateComponent implements OnInit {
 
-  public formGroup: FormGroup = new FormGroup({
-    'title': new FormControl('', Validators.required)
+  public formGroup: UntypedFormGroup = new UntypedFormGroup({
+    'title': new UntypedFormControl('', Validators.required)
   });
   public topicSelected: Topic|null = null;
   public questionnaireQuestions: QuestionnaireQuestion[] = [];
@@ -56,7 +56,8 @@ export class CreateComponent implements OnInit {
     return {
       title: this.formGroup.get('title')?.value,
       questions: this.questionnaireQuestions,
-      topic: this.topicSelected as Topic
+      topic: this.topicSelected as Topic,
+      enabled: true
     }
   }
 

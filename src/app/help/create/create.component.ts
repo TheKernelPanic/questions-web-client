@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Book, Help, Lesson, Topic} from "@HttpApi/model";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {Title} from "@angular/platform-browser";
 import {HttpErrorResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
@@ -19,7 +19,7 @@ export class CreateComponent implements OnInit {
     'text/plain',
     'text/html'
   ];
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public topicSelected: Topic|null = null;
   public bookSelected: Book|null = null;
   public lessonSelected: Lesson|null = null;
@@ -33,10 +33,10 @@ export class CreateComponent implements OnInit {
 
   public ngOnInit(): void {
     //this.titleService.setTitle('Backoffice - New help');
-    this.form = new FormGroup({
-      title: new FormControl('', Validators.required),
-      content: new FormControl('', Validators.required),
-      mimetype: new FormControl(this.mimetypesAllowed[0], Validators.required)
+    this.form = new UntypedFormGroup({
+      title: new UntypedFormControl('', Validators.required),
+      content: new UntypedFormControl('', Validators.required),
+      mimetype: new UntypedFormControl(this.mimetypesAllowed[0], Validators.required)
     });
   }
 
@@ -57,9 +57,9 @@ export class CreateComponent implements OnInit {
 
   private getHttpModel(): Help {
     return {
-      title: (this.form.get('title') as FormControl).value,
-      content: (this.form.get('content') as FormControl).value,
-      mimetype: (this.form.get('mimetype') as FormControl).value,
+      title: (this.form.get('title') as UntypedFormControl).value,
+      content: (this.form.get('content') as UntypedFormControl).value,
+      mimetype: (this.form.get('mimetype') as UntypedFormControl).value,
       topic: this.topicSelected,
       book: this.bookSelected,
       lesson: this.lessonSelected

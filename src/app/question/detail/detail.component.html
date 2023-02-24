@@ -1,41 +1,28 @@
 <div class="container bg-white my-5 p-4">
-  <div class="row justify-content-center py-5" *ngIf="loader">
-    <div class="spinner-border text-secondary" role="status">
-      <span class="sr-only">Loading...</span>
-    </div>
-  </div>
-  <div class="row px-4 py-3" *ngIf="!loader">
-    <div class="col">
-
-      <div class="row justify-content-end" *ngIf="question.topic">
-        <em>{{question.topic?.description}}</em>
-      </div>
-      <div class="row" *ngIf="question.lesson">
-        <h5 class="h5">{{question.lesson?.position}}. {{question.lesson?.description}}</h5>
-      </div>
-
-      <div class="row">
-        <h4 class="h4">{{question.title}}</h4>
-      </div>
-
-      <div class="row">
-        <div class="col my-2">
-          <div class="row pl-3" [ngClass]="{'text-success': answer.result, 'text-danger': !answer.result}" *ngFor="let answer of question.answers">
-            {{answer.position}}. {{answer.text}}
+  <app-spinner-loader [loader]="loader">
+    <div content class="row px-4 py-3">
+      <div class="col">
+        <div class="row justify-content-end" *ngIf="question.topic">
+          <em>{{question.topic.description}}</em>
+        </div>
+        <div class="row" *ngIf="question.lesson">
+          <h5 class="h5">{{question.lesson.position}}. {{question.lesson.description}}</h5>
+        </div>
+        <div class="row">
+          <h4 class="h4">{{question.title}}</h4>
+        </div>
+        <div class="row">
+          <div class="col my-2">
+            <div [ngClass]="{'text-success': answer.result, 'text-danger': !answer.result}" *ngFor="let answer of question.answers">
+              {{answer.position}}. {{answer.text}}
+            </div>
           </div>
         </div>
-      </div>
-
-      <div class="row mt-3">
-        <em class="small">Created at {{question.created_at | date : 'dd/MM/y h:m'}}</em>
-      </div>
-
-      <div class="row justify-content-end">
-        <button class="btn btn-danger btn-sm" [disabled]="true">
-          <i class="bi bi-trash"></i>
-          Delete question
-        </button>
+        <div class="row mt-3">
+          <em class="small">Created at {{question.created_at | date : 'dd/MM/y h:m'}}</em>
+        </div>
+        <!-- TODO: Delete question action -->
       </div>
     </div>
-  </div>
+  </app-spinner-loader>
 </div>

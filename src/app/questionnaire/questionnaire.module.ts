@@ -7,9 +7,6 @@ import {QuestionnaireRoutingModule} from "@Questionnaire/questionnaire-routing.m
 import {ComponentsModule} from "../components/components.module";
 import {ReactiveFormsModule} from "@angular/forms";
 import { QuestionsListEditorComponent } from './components/questions-list-editor/questions-list-editor.component';
-import {SortablejsModule} from "ngx-sortablejs";
-
-
 
 
 @NgModule({
@@ -23,8 +20,7 @@ import {SortablejsModule} from "ngx-sortablejs";
     CommonModule,
     QuestionnaireRoutingModule,
     ComponentsModule,
-    ReactiveFormsModule,
-    SortablejsModule
+    ReactiveFormsModule
   ]
 })
 export class QuestionnaireModule { }

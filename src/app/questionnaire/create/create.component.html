@@ -1,16 +1,9 @@
 <app-content-wrapper>
-  <div>
-  </div>
+
   <div>
     <!-- Basic information -->
-    <form [formGroup]="formGroup" (ngSubmit)="submit()">
-      <div class="p-3 row justify-content-end">
-        <button class="btn btn-success btn-sm" type="submit" [disabled]="formGroup.invalid">
-          <i class="bi bi-save"></i>
-          Save
-        </button>
-      </div>
-      <div>
+    <form [formGroup]="formGroup" (ngSubmit)="submit()" #formElement="ngForm">
+      <div class="form-group">
         <label class="form-label small">
           Title
         </label>
@@ -25,5 +18,13 @@
   <!-- Questions list -->
   <div *ngIf="topicSelected">
     <app-questions-list-editor [questionnaireQuestions]="questionnaireQuestions" [topic]="topicSelected"></app-questions-list-editor>
+  </div>
+  <div class="my-4 row">
+    <div class="col text-center">
+      <button class="btn btn-success btn-sm" type="button" (click)="formElement.ngSubmit.emit()" [disabled]="formGroup.invalid">
+        <i class="bi bi-save"></i>
+        Save
+      </button>
+    </div>
   </div>
 </app-content-wrapper>

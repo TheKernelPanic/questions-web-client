@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Book, FileUploaded, Help, Lesson, Question, Tag, Topic} from "@HttpApi/model";
-import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, UntypedFormArray, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {HttpErrorResponse} from "@angular/common/http";
 import {Title} from "@angular/platform-browser";
 import {Router} from "@angular/router";
@@ -14,7 +14,7 @@ import {Subject} from "rxjs";
 })
 export class CreateComponent implements OnInit {
 
-  public form: FormGroup;
+  public form: UntypedFormGroup;
   public maxAmountAnswers: number = 6;
   public loader: boolean = false;
   public helps: Help[];
@@ -27,7 +27,7 @@ export class CreateComponent implements OnInit {
   public image: FileUploaded|null = null;
 
   public constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private title: Title,
     private questionHttpService: QuestionHttpService,
     private router: Router
@@ -38,29 +38,28 @@ export class CreateComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    //this.title.setTitle('Backoffice - Question creation');
     this.initializeForm();
     this.addNewAnswer();
   }
 
   public addNewAnswer(): void {
-    if ((this.form.get('answers') as FormArray).length >= this.maxAmountAnswers) {
+    if ((this.form.get('answers') as UntypedFormArray).length >= this.maxAmountAnswers) {
       return;
     }
-    (this.form.get('answers') as FormArray).push(
-      new FormGroup({
-        text: new FormControl('', Validators.required),
-        result: new FormControl(false)
+    (this.form.get('answers') as UntypedFormArray).push(
+      new UntypedFormGroup({
+        text: new UntypedFormControl('', Validators.required),
+        result: new UntypedFormControl(false)
       })
     );
   }
 
   public removeAnswer(index: number): void {
-    (this.form.get('answers') as FormArray).removeAt(index);
+    (this.form.get('answers') as UntypedFormArray).removeAt(index);
   }
 
-  public answers(): FormArray {
-    return this.form.get('answers') as FormArray;
+  public answers(): UntypedFormArray {
+    return this.form.get('answers') as UntypedFormArray;
   }
 
   public onSubmit(): void {
@@ -79,25 +78,25 @@ export class CreateComponent implements OnInit {
   }
 
   private initializeForm(): void {
-    this.form = new FormGroup({
-      questionTitle: new FormControl('', Validators.required),
-      questionObservations: new FormControl(''),
+    this.form = new UntypedFormGroup({
+      questionTitle: new UntypedFormControl('', Validators.required),
+      questionObservations: new UntypedFormControl(''),
       answers: this.formBuilder.array([])
     })
   }
 
   private getHttpModel(): Question {
     const question: Question = {
-      title: (this.form.get('questionTitle') as FormControl).value,
-      observations: (this.form.get('questionObservations') as FormControl).value.length ? (this.form.get('questionObservations') as FormControl).value : null,
+      title: (this.form.get('questionTitle') as UntypedFormControl).value,
+      observations: (this.form.get('questionObservations') as UntypedFormControl).value.length ? (this.form.get('questionObservations') as UntypedFormControl).value : null,
       answers: [],
       image: this.image
     };
-    for (let i = 0; i < (this.form.get('answers') as FormArray).length; i++) {
-      const group: AbstractControl = (this.form.get('answers') as FormArray).at(i);
+    for (let i = 0; i < (this.form.get('answers') as UntypedFormArray).length; i++) {
+      const group: AbstractControl = (this.form.get('answers') as UntypedFormArray).at(i);
       question.answers.push({
-        text: (group.get('text') as FormControl).value,
-        result: (group.get('result') as FormControl).value,
+        text: (group.get('text') as UntypedFormControl).value,
+        result: (group.get('result') as UntypedFormControl).value,
         position: i+1
       });
     }

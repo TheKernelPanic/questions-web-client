@@ -1,65 +1,61 @@
 <div>
-  <div class="py-4 row">
-    <div class="col-12">
+  <div class="row my-4">
+    <div class="col text-end">
       <button class="btn btn-sm btn-primary" (click)="selectQuestions()">
+        <i class="bi bi-plus-square"></i>
         Add question
       </button>
     </div>
   </div>
-
   <div class="row">
     <!-- Sortable questions list -->
-    <div class="col bg-light" [sortablejs]="questionnaireQuestions" [sortablejsOptions]="sortableJsOptions">
-      <div class="row px-2 my-3 mx-1 bg-white" *ngFor="let questionnaireQuestion of questionnaireQuestions; let i = index; trackBy: trackByQuestionnaireQuestions">
+    <div class="col bg-light">
+      <div class="row p-3 m-3 bg-white" *ngFor="let questionnaireQuestion of questionnaireQuestions; let i = index; trackBy: trackByQuestionnaireQuestions">
         <div class="col-10">
           <div class="row small font-weight-bold text-secondary pl-2">
             {{questionnaireQuestion.position}}.{{questionnaireQuestion.question.title}}
           </div>
         </div>
         <div class="col-2">
-          <div class="row justify-content-end">
-            <button class="btn btn-sm btn-danger" type="button" (click)="questionnaireQuestions.splice(i, 1)">
-              Delete
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Questions selector modal -->
-  <ng-template #questionsSelectorModal let-modal>
-    <div class="row px-2 py-4" *ngIf="!loader; else spinner">
-      <div class="col-12">
-        <!-- Questions list -->
-        <div class="row my-2 my-4 mx-2 border border-light" *ngFor="let question of questionsAvailable">
-          <div class="col-8">
-            <div class="row">
-              <h5 class="h5 text-secondary">{{question.title}}</h5>
-            </div>
-            <div>
-              <p class="small" *ngFor="let answer of question.answers">
-                {{answer.text}}
-              </p>
-            </div>
-          </div>
-          <div class="col-4">
-            <div class="row p-2 justify-content-end">
-              <button class="btn btn-sm btn-primary" type="button" (click)="select(question); modal.close()">
-                Select
+          <div class="row">
+            <div class="col text-end">
+              <button class="btn btn-sm btn-danger" type="button" (click)="questionnaireQuestions.splice(i, 1)">
+                <i class="bi bi-trash"></i>
+                Delete
               </button>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- Spinner -->
-    <ng-template #spinner>
-      <div class="row justify-content-center py-5" *ngIf="loader">
-        <div class="spinner-border text-secondary" role="status">
-          <span class="sr-only">Loading...</span>
+  </div>
+  <!-- Questions selector modal -->
+  <ng-template #questionsSelectorModal let-modal>
+    <app-spinner-loader [loader]="loader">
+      <div content class="row p-4">
+        <div class="col-12">
+          <!-- Questions list -->
+          <div class="row my-4 p-3 border border-light" *ngFor="let question of questionsAvailable">
+            <div class="col">
+              <div class="row">
+                <h6 class="h6">{{question.title}}</h6>
+              </div>
+              <div>
+                <p class="m-0 small text-secondary" [ngClass]="{'text-success': answer.result, 'text-danger': !answer.result}" *ngFor="let answer of question.answers">
+                  {{answer.text}}
+                </p>
+              </div>
+              <div class="row">
+                <div class="col text-end">
+                  <button class="btn btn-sm btn-primary" type="button" (click)="select(question); modal.close()">
+                    Select
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </ng-template>
+    </app-spinner-loader>
   </ng-template>
 </div>

@@ -1,15 +1,17 @@
 <app-content-wrapper>
   <app-topic-selector (onTopicSelection)="fetchQuestions($event)"></app-topic-selector>
   <app-spinner-loader [loader]="loader">
-    <div class="row px-3 mt-2" content>
+    <div class="row mt-2" content>
       <div class="col">
         <div *ngFor="let question of questions">
           <app-question-card [question]="question">
-            <div class="row justify-content-end" actions>
-              <button class="btn btn-success btn-sm" (click)="viewQuestion(question)">
-                <i class="bi bi-eye"></i>
-                View question
-              </button>
+            <div class="row" actions>
+              <div class="col text-end">
+                <button class="btn btn-success btn-sm" (click)="viewQuestion(question)">
+                  <i class="bi bi-eye"></i>
+                  View question
+                </button>
+              </div>
             </div>
           </app-question-card>
         </div>
