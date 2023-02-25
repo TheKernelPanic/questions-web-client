@@ -7,6 +7,7 @@ import {QuestionnaireRoutingModule} from "@Questionnaire/questionnaire-routing.m
 import {ComponentsModule} from "../components/components.module";
 import {ReactiveFormsModule} from "@angular/forms";
 import { QuestionsListEditorComponent } from './components/questions-list-editor/questions-list-editor.component';
+import {TranslateModule} from "@ngx-translate/core";
 
 
 @NgModule({
@@ -16,11 +17,12 @@ import { QuestionsListEditorComponent } from './components/questions-list-editor
     QuestionnaireComponent,
     QuestionsListEditorComponent
   ],
-  imports: [
-    CommonModule,
-    QuestionnaireRoutingModule,
-    ComponentsModule,
-    ReactiveFormsModule
-  ]
+    imports: [
+        CommonModule,
+        QuestionnaireRoutingModule,
+        ComponentsModule,
+        ReactiveFormsModule,
+        TranslateModule.forChild()
+    ]
 })
 export class QuestionnaireModule { }

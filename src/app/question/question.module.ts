@@ -8,6 +8,7 @@ import { DetailComponent } from './detail/detail.component';
 import {ComponentsModule} from "../components/components.module";
 import {ReactiveFormsModule} from "@angular/forms";
 import {HelpSelectorComponent} from "../components/help-selector/help-selector.component";
+import {TranslateModule} from "@ngx-translate/core";
 
 
 @NgModule({
@@ -18,12 +19,13 @@ import {HelpSelectorComponent} from "../components/help-selector/help-selector.c
     DetailComponent,
     HelpSelectorComponent
   ],
-  imports: [
-    CommonModule,
-    QuestionRoutingModule,
-    ComponentsModule,
-    ReactiveFormsModule
-  ],
+    imports: [
+        CommonModule,
+        QuestionRoutingModule,
+        ComponentsModule,
+        ReactiveFormsModule,
+        TranslateModule.forChild()
+    ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [QuestionComponent]
 })

@@ -14,6 +14,7 @@ import { SpinnerLoaderComponent } from './spinner-loader/spinner-loader.componen
 import { QuestionCardComponent } from './question-card/question-card.component';
 import { ImageUploaderComponent } from './image-uploader/image-uploader.component';
 import {PipesModule} from "../pipes/pipes.module";
+import {TranslateModule} from "@ngx-translate/core";
 
 
 
@@ -36,7 +37,8 @@ import {PipesModule} from "../pipes/pipes.module";
     ReactiveFormsModule,
     NgbDropdownModule,
     RouterModule,
-    PipesModule
+    PipesModule,
+    TranslateModule.forChild()
   ],
   exports: [
     NavigationBarComponent,

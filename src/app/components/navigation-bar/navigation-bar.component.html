@@ -14,14 +14,14 @@
                 type="button"
                 ngbDropdownAnchor
                 (focus)="questionDropdown.open()">
-          Questions
+          {{'questions' | translate}}
         </button>
         <div ngbDropdownMenu aria-labelledby="dropdownManual">
           <button ngbDropdownItem [routerLink]="'question/create'">
-            Create
+            {{'create' | translate}}
           </button>
           <button ngbDropdownItem [routerLink]="'question/list'">
-            List
+            {{'list' | translate}}
           </button>
         </div>
       </div>
@@ -32,14 +32,14 @@
                 type="button"
                 ngbDropdownAnchor
                 (focus)="helpDropdown.open()">
-          Helps
+          {{'helps' | translate}}
         </button>
         <div ngbDropdownMenu aria-labelledby="dropdownManual">
           <button ngbDropdownItem [routerLink]="'help/create'">
-            Create
+            {{'create' | translate}}
           </button>
           <button ngbDropdownItem [routerLink]="'help/list'">
-            List
+            {{'list' | translate}}
           </button>
         </div>
       </div>
@@ -50,14 +50,14 @@
                 type="button"
                 ngbDropdownAnchor
                 (focus)="questionnaireDropdown.open()">
-          Questionnaire
+          {{'questionnaire' | translate}}
         </button>
         <div ngbDropdownMenu aria-labelledby="dropdownManual">
           <button ngbDropdownItem [routerLink]="'questionnaire/create'">
-            Create
+            {{'create' | translate}}
           </button>
           <button ngbDropdownItem [routerLink]="'questionnaire/list'">
-            List
+            {{'list' | translate}}
           </button>
         </div>
       </div>

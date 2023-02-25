@@ -2,6 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Topic} from "@HttpApi/model";
 import {HttpErrorResponse} from "@angular/common/http";
 import TopicHttpService from "@HttpApi/topic-http.service";
+import {from} from "rxjs";
 
 @Component({
   selector: 'app-topic-selector',
@@ -36,7 +37,7 @@ export class TopicSelectorComponent implements OnInit {
       complete: () => {
         this.loader = false;
       }
-    })
+    });
   }
 
   public onChangeTopic(): void {

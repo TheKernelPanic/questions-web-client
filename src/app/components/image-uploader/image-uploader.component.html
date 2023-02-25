@@ -1,6 +1,6 @@
 <input style="display: none;" type="file" (change)="onUpload($event)" #uploader [accept]="typesAllowed.join(',')" />
 <button type="button" class="btn btn-sm btn-primary" (click)="uploader.click()">
   <i class="bi bi-cloud-upload"></i>
-  Upload image
+  {{'uploadImage' | translate}}
 </button>
 

@@ -6,6 +6,7 @@ import { ListComponent } from './list/list.component';
 import {HelpRoutingModule} from "./help-routing.module";
 import {ReactiveFormsModule} from "@angular/forms";
 import {ComponentsModule} from "../components/components.module";
+import {TranslateModule} from "@ngx-translate/core";
 
 
 
@@ -15,12 +16,13 @@ import {ComponentsModule} from "../components/components.module";
     CreateComponent,
     ListComponent
   ],
-  imports: [
-    CommonModule,
-    HelpRoutingModule,
-    ReactiveFormsModule,
-    ComponentsModule
-  ],
+    imports: [
+        CommonModule,
+        HelpRoutingModule,
+        ReactiveFormsModule,
+        ComponentsModule,
+        TranslateModule.forChild()
+    ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [HelpComponent]
 })
