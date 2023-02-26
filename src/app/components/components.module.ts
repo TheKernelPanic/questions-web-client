@@ -15,6 +15,7 @@ import { QuestionCardComponent } from './question-card/question-card.component';
 import { ImageUploaderComponent } from './image-uploader/image-uploader.component';
 import {PipesModule} from "../pipes/pipes.module";
 import {TranslateModule} from "@ngx-translate/core";
+import { MimetypeSelectorComponent } from './mimetype-selector/mimetype-selector.component';
 
 
 
@@ -29,7 +30,8 @@ import {TranslateModule} from "@ngx-translate/core";
     HelpCardComponent,
     SpinnerLoaderComponent,
     QuestionCardComponent,
-    ImageUploaderComponent
+    ImageUploaderComponent,
+    MimetypeSelectorComponent
   ],
   imports: [
     CommonModule,
@@ -40,17 +42,18 @@ import {TranslateModule} from "@ngx-translate/core";
     PipesModule,
     TranslateModule.forChild()
   ],
-  exports: [
-    NavigationBarComponent,
-    TagsSelectorComponent,
-    TopicSelectorComponent,
-    ContentWrapperComponent,
-    BookSelectorComponent,
-    LessonSelectorComponent,
-    HelpCardComponent,
-    QuestionCardComponent,
-    SpinnerLoaderComponent,
-    ImageUploaderComponent
-  ]
+    exports: [
+        NavigationBarComponent,
+        TagsSelectorComponent,
+        TopicSelectorComponent,
+        ContentWrapperComponent,
+        BookSelectorComponent,
+        LessonSelectorComponent,
+        HelpCardComponent,
+        QuestionCardComponent,
+        SpinnerLoaderComponent,
+        ImageUploaderComponent,
+        MimetypeSelectorComponent
+    ]
 })
 export class ComponentsModule { }

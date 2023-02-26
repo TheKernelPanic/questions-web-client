@@ -1,6 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {Book, FileUploaded, Help, Lesson, Question, Tag, Topic} from "@HttpApi/model";
-import {AbstractControl, UntypedFormArray, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
+import {
+  AbstractControl,
+  FormControl,
+  UntypedFormArray,
+  UntypedFormBuilder,
+  UntypedFormControl,
+  UntypedFormGroup,
+  Validators
+} from "@angular/forms";
 import {HttpErrorResponse} from "@angular/common/http";
 import {Title} from "@angular/platform-browser";
 import {Router} from "@angular/router";
@@ -25,6 +33,7 @@ export class CreateComponent implements OnInit {
   public bookSelectionSubject: Subject<Book> = new Subject<Book>();
   public lessonSelected: Lesson|null = null;
   public image: FileUploaded|null = null;
+  public mimetypeSelected: string;
 
   public constructor(
     private formBuilder: UntypedFormBuilder,
@@ -39,7 +48,6 @@ export class CreateComponent implements OnInit {
 
   public ngOnInit(): void {
     this.initializeForm();
-    this.addNewAnswer();
   }
 
   public addNewAnswer(): void {
@@ -48,8 +56,9 @@ export class CreateComponent implements OnInit {
     }
     (this.form.get('answers') as UntypedFormArray).push(
       new UntypedFormGroup({
-        text: new UntypedFormControl('', Validators.required),
-        result: new UntypedFormControl(false)
+        'text': new FormControl('', Validators.required),
+        'result': new FormControl(false),
+        'mimetype': new FormControl('', Validators.required)
       })
     );
   }
@@ -90,13 +99,15 @@ export class CreateComponent implements OnInit {
       title: (this.form.get('questionTitle') as UntypedFormControl).value,
       observations: (this.form.get('questionObservations') as UntypedFormControl).value.length ? (this.form.get('questionObservations') as UntypedFormControl).value : null,
       answers: [],
-      image: this.image
+      image: this.image,
+      mimetype: this.mimetypeSelected
     };
     for (let i = 0; i < (this.form.get('answers') as UntypedFormArray).length; i++) {
       const group: AbstractControl = (this.form.get('answers') as UntypedFormArray).at(i);
       question.answers.push({
         text: (group.get('text') as UntypedFormControl).value,
         result: (group.get('result') as UntypedFormControl).value,
+        mimetype: (group.get('mimetype') as UntypedFormControl).value,
         position: i+1
       });
     }

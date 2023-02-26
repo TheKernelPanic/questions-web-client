@@ -21,10 +21,12 @@
   "create": "Crear",
   "helps": "Ayudas",
   "questionnaire": "Cuestionario",
+  "questionnaires": "Cuestionarios",
   "addTags": "Añadir etiquetas",
   "tagText": "Texto de la etiqueta",
   "list": "Listado",
   "helpSelection": "Selección de ayuda",
   "answerNumber": "Repuesta Nº{{number}}",
-  "newQuestion": "Nueva pregunta"
+  "newQuestion": "Nueva pregunta",
+  "helpsForQuestion": "Ayudas para la pregunta"
 }

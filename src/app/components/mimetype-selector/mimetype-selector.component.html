@@ -1,0 +1,10 @@
+<div class="form-group">
+  <label class="form-label small">
+    {{'format' | translate}}
+  </label>
+  <select [formControl]="formControl" class="form-select form-select-sm">
+    <option [ngValue]="mimetype" *ngFor="let mimetype of mimetypesAllowed">
+      {{mimetype}}
+    </option>
+  </select>
+</div>

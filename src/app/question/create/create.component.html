@@ -33,6 +33,11 @@
             <app-image-uploader (onImageUploaded)="image=$event"></app-image-uploader>
           </ng-template>
         </div>
+
+        <!-- Mimetype -->
+        <div class="my-2">
+          <app-mimetype-selector (onSelect)="mimetypeSelected=$event"></app-mimetype-selector>
+        </div>
         <!-- Question title -->
         <div class="form-group my-2">
           <label class="form-label small">
@@ -41,9 +46,9 @@
           <textarea class="form-control" formControlName="questionTitle" maxlength="255"></textarea>
         </div>
         <!-- Answers -->
-        <div class="pt-4" formArrayName="answers">
+        <div class="pt-4 mt-3 order-top" formArrayName="answers">
           <div *ngFor="let answer of answers().controls; let i = index;">
-            <div class="row align-items-center my-2" [formGroupName]="i">
+            <div class="row my-2" [formGroupName]="i">
               <!-- Answer text -->
               <div class="col-8">
                 <div class="form-group">
@@ -52,10 +57,13 @@
                   </label>
                   <input class="form-control form-control-sm" type="text" formControlName="text" maxlength="255"/>
                 </div>
+                <div>
+                  <app-mimetype-selector (onSelect)="$any(answer).get('mimetype')?.setValue($event)"></app-mimetype-selector>
+                </div>
               </div>
               <!-- Answer result -->
               <div clasS="col-2">
-                <div class="row align-items-end">
+                <div class="row">
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox" formControlName="result"/>
                     <label class="form-check-label small">
@@ -93,16 +101,15 @@
                 {{'helpsForQuestion' | translate}}
               </h6>
             </div>
-            <div class="row py-3" *ngFor="let help of helps">
+            <div class="row py-3" *ngFor="let help of helps; let i = index">
               <div class="col-9 small font-italic">
                 {{help.title}}
               </div>
-              <div class="col-3 align-self-center">
-                <div class="row justify-content-end">
-                  <button class="btn btn-danger btn-sm" type="button">
-                    <i class="bi bi-trash"></i>
-                  </button>
-                </div>
+              <div class="col-3 text-end">
+                <button class="btn btn-danger btn-sm" type="button" (click)="helps.splice(i, 1)">
+                  <i class="bi bi-trash"></i>
+                  {{'delete' | translate}}
+                </button>
               </div>
             </div>
           </div>

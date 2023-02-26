@@ -9,6 +9,7 @@ import {ComponentsModule} from "../components/components.module";
 import {ReactiveFormsModule} from "@angular/forms";
 import {HelpSelectorComponent} from "../components/help-selector/help-selector.component";
 import {TranslateModule} from "@ngx-translate/core";
+import {PipesModule} from "../pipes/pipes.module";
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {TranslateModule} from "@ngx-translate/core";
         QuestionRoutingModule,
         ComponentsModule,
         ReactiveFormsModule,
-        TranslateModule.forChild()
+        TranslateModule.forChild(),
+        PipesModule
     ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [QuestionComponent]

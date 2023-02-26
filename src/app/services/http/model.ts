@@ -10,6 +10,7 @@ export interface Question {
   helps?: Help[];
   tags?: Tag[];
   image: FileUploaded|null;
+  mimetype: string;
 }
 
 export interface Help {
@@ -29,6 +30,7 @@ export interface Answer {
   text: string;
   position: number;
   result: boolean;
+  mimetype: string;
 }
 
 export interface Topic {

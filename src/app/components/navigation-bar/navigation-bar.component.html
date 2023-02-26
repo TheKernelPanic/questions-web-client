@@ -7,7 +7,6 @@
   </a>
   <div class="navbar-collapse border-left border-secondary mr-3">
     <ul class="navbar-nav">
-
       <!-- Question selector -->
       <div class="nav-item" ngbDropdown #questionDropdown="ngbDropdown">
         <button class="btn btn-outline-dark text-secondary"
@@ -25,7 +24,6 @@
           </button>
         </div>
       </div>
-
       <!-- Help selector -->
       <div class="nav-item" ngbDropdown #helpDropdown="ngbDropdown">
         <button class="btn btn-outline-dark text-secondary"
@@ -50,7 +48,7 @@
                 type="button"
                 ngbDropdownAnchor
                 (focus)="questionnaireDropdown.open()">
-          {{'questionnaire' | translate}}
+          {{'questionnaires' | translate}}
         </button>
         <div ngbDropdownMenu aria-labelledby="dropdownManual">
           <button ngbDropdownItem [routerLink]="'questionnaire/create'">

@@ -19,7 +19,7 @@
           </div>
         </div>
         <div class="row mt-3">
-          <em class="small">Created at {{question.created_at | date : 'dd/MM/y h:m'}}</em>
+          <em class="small">Created at {{question.created_at | dateUtcToLocalRawFormat }}</em>
         </div>
         <!-- TODO: Delete question action -->
       </div>
